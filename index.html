@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor AI - Symptom Checker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    #chat-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    #messages {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding-right: 10px;
+    }
+    .message {
+      margin-bottom: 15px;
+    }
+    .user {
+      color: #3498db;
+    }
+    .bot {
+      color: #2c3e50;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    input {
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .spinner {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Doctor AI - Symptom Checker</h1>
+  <div id="chat-container">
+    <div id="messages"></div>
+    <input type="text" id="user-input" placeholder="Enter your symptom or city...">
+    <button onclick="sendMessage()">Send</button>
+    <div class="spinner" id="loading">Thinking...</div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const inputField = document.getElementById("user-input");
+      const message = inputField.value.trim();
+      if (!message) return;
+
+      appendMessage("You", message, "user");
+      inputField.value = "";
+      document.getElementById("loading").style.display = "block";
+
+      // Get user location from browser
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, lat, lon, city: message })
+        });
+
+        const data = await response.json();
+        document.getElementById("loading").style.display = "none";
+
+        let reply = `${data.advice}\nMedicine: ${data.medicine}\nDosage: ${data.dosage}`;
+
+        if (data.doctors && data.doctors.length > 0) {
+          reply += "\n\nNearby Doctors:\n" + data.doctors.map(doc => `${doc.name}, ${doc.address} (${doc.distance_km ?? ''} km)`).join("\n");
+        }
+
+        appendMessage("Doctor AI", reply, "bot");
+
+      }, (error) => {
+        document.getElementById("loading").style.display = "none";
+        appendMessage("Doctor AI", "Unable to get your location. Please allow GPS access.", "bot");
+      });
+    }
+
+    function appendMessage(sender, text, className) {
+      const messagesDiv = document.getElementById("messages");
+      const messageDiv = document.createElement("div");
+      messageDiv.className = `message ${className}`;
+      messageDiv.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, "<br>")}`;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
+</body>
+</html>
