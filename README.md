@@ -1,67 +1,78 @@
-👨‍⚕️ DOCTOR AI CHATBOT – YOUR PERSONAL HEALTH ASSISTANT 💬
+# Doctor AI Chatbot – Your Personal Health Assistant
 
-===========================================================
-🤖 What is Doctor AI?
------------------------------------------------------------
-Doctor AI is a smart, conversational chatbot built using Python and Flask. It helps users check basic symptoms and suggests appropriate advice, medicines, dosages, and even the nearest best doctors – all powered by real-time geolocation & Google Maps API! 🌐📍
+## Overview
 
-Whether you're feeling unwell or just curious, Doctor AI is here to help—right from your terminal or browser.
+Doctor AI is an intelligent, conversational health assistant built using **Python** and **Flask**. It recognizes common symptoms, provides medical advice and dosage suggestions, and uses **real-time geolocation** with **Google Maps API** to recommend the best nearby doctors. Whether you're feeling unwell or just curious, Doctor AI is ready to assist—right from your terminal or browser.
 
-===========================================================
-💡 Features You’ll Love:
------------------------------------------------------------
-✔️ Recognizes common symptoms like fever, headache, and cold  
-✔️ Provides human-friendly advice, medicine, and dosage  
-✔️ Uses real-time GPS to find best doctors nearby (with Google Maps)  
-✔️ Suggests doctors from nearby cities if none are found locally  
-✔️ Handles misspelled or capitalized symptom and city names  
-✔️ Clean, interactive chat interface in the browser  
-✔️ Caches results to reduce API load and improve performance  
-✔️ Graceful error handling for a smooth user experience  
+## Features
 
-===========================================================
-🚀 How to Run It:
------------------------------------------------------------
-1. Clone this repo or download the ZIP
-2. Create a virtual environment:
-   👉 `python -m venv venv`
-3. Activate the environment:
-   👉 Windows: `venv\Scripts\activate`
-4. Install dependencies:
-   👉 `pip install -r requirements.txt`
-5. Create a `.env` file:
-   👉 Copy contents from `.env.example` and add your Google API key
-6. Run the app:
-   👉 `python app.py`
-7. Open your browser and go to:
-   👉 `http://127.0.0.1:5000`
+- **Symptom Recognition**: Detects common symptoms like fever, headache, and cold.
+- **Health Advice**: Suggests relevant treatments, medicines, and proper dosages.
+- **Doctor Finder**: Locates the best doctors near you using real-time GPS and Google Maps.
+- **Nearby City Search**: Suggests doctors from nearby cities if none are available locally.
+- **Input Handling**: Supports misspelled or capitalized symptom and city names.
+- **Interactive Chat UI**: Clean, responsive web interface for easy interaction.
+- **Result Caching**: Reduces API calls and improves performance.
+- **Error Handling**: Ensures smooth user experience even with incomplete data.
 
-===========================================================
-🌍 Tech Stack:
------------------------------------------------------------
-🔹 Python 3.13  
-🔹 Flask  
-🔹 Geopy  
-🔹 Google Maps Places API  
-🔹 JavaScript (for geolocation)  
-🔹 HTML + CSS (Frontend)
+## Installation
 
-===========================================================
-🛡️ License
------------------------------------------------------------
-© 2025 YourName. This project is protected by a strict license.
+```bash
+# Clone the repository
+git clone https://github.com/irfanshakeel1094/Doctor-AI.git
+cd Doctor-AI
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the environment
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+## Setup
+
+1. Create a `.env` file in the project root.
+2. Copy contents from `.env.example`.
+3. Add your **Google Maps API key**.
+
+## Usage
+
+```bash
+# Run the Flask app
+python app.py
+```
+
+Open your browser and visit:
+
+```
+http://127.0.0.1:5000
+```
+
+## Tech Stack
+
+- Python 3.13
+- Flask
+- Geopy
+- Google Maps Places API
+- JavaScript (for geolocation)
+- HTML + CSS
+
+## License
+
+© 2025 YourName. This project is protected by a strict license.  
 You **may not** copy, sell, or replicate this idea without permission.
 
-===========================================================
-🤝 Contribute
------------------------------------------------------------
-Got ideas for improvements? Feel free to fork and make a pull request.
-We welcome enhancements, better symptom support, UI updates, and more.
+## Contributing
 
-===========================================================
-📬 Contact
------------------------------------------------------------
-💌 Email: shakeelirfan1972@gmail.com  
-🌐 GitHub: https://github.com/irfanshakeel1094/Doctor-AI
+We welcome suggestions and improvements! Fork the repository, enhance symptom coverage, improve UI, or optimize performance—and submit a pull request.
 
-Let’s build smarter health together! 🧠💬🌍
+## Contact
+
+📧 Email: **irfanshakeel1094@gmail.com**  
+🌐 GitHub: [Doctor AI Repository](https://github.com/irfanshakeel1094/Doctor-AI)
